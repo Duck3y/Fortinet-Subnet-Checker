@@ -1,12 +1,12 @@
 import ipaddress
+import subprocess
 
 inputFile = ('iplist.txt')      #Change to your filename
 ASNumber = ('')          #E.g Google = AS15169
 IPlist = ''
 subnet, bigList, checkList = [], [], []
 
-def ipBackupScript(ASN):
-    import subprocess
+def ASNCheckScript(ASN):
     finList = []
     cmd = 'whois -h whois.ripe.net -T route '+ASN+' -i origin | egrep "route: " | awk "{print $NF}"'
 
@@ -32,7 +32,7 @@ if len(ASNumber) == 0:
     exit()
 
 if len(IPlist) == 0:
-    IPlist = ipBackupScript(ASNumber)
+    IPlist = ASNCheckScript(ASNumber)
 
 for i in IPlist:
     for x in ipaddress.IPv4Network(i):
