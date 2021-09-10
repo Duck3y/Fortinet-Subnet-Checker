@@ -47,11 +47,15 @@ with open('fortinet_victim_list_2021.txt', 'r') as f:
 
 for x in bigList:
     checkList.append(x.split(':')[0])
-
+print("\n> IP's loaded, running check. This may take a while...\n")
 bigList = [i for i in checkList if i in subnet]
 
 if len(bigList) > 0:
+    print("==============================================")
     print("The following IP's are affected by this leak;")
     print(bigList)
+    print("==============================================")
 else:
+    print("==============================================")
     print("No matches found.")
+    print("==============================================")
